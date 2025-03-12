@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Stdmain {
 	public static void main(String [] args)
@@ -9,7 +11,7 @@ public class Stdmain {
 		s.setAge(23);
 		s.setName("Ads");
 		Student s1 = new Student();
-		s1.setId(13);
+		s1.setId(1);
 		s1.setAge(211);
 		s1.setName("Dx");
 		Student s2 = new Student();
@@ -17,7 +19,7 @@ public class Stdmain {
 		s2.setAge(44);
 		s2.setName("WER");
 		
-		List<Student> st = new ArrayList<>();
+		Set<Student> st = new HashSet<>();
 		st.add(s);
 		st.add(s2);
 		st.add(s1);
