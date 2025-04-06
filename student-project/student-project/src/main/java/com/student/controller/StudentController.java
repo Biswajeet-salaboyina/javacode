@@ -16,6 +16,7 @@ import java.util.List;
 import com.student.dto.StudentRequestdto;
 import com.student.dto.StudentFetch;
 import com.student.dto.StudentResponsedto;
+import com.student.dto.Studentfetchdto;
 import com.student.entity.Student;
 import com.student.service.StudentService;
 
@@ -45,4 +46,12 @@ public class StudentController {
 		Student response = studentService.fetchBygetId(id);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
+	
+	@GetMapping("/fetch-all-dto/{id}")
+	public ResponseEntity<Studentfetchdto> fetchBygetIddto(@PathVariable("id") Integer id)
+	{
+		Studentfetchdto response = studentService.fetchBygetIddto(id);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+	
 }

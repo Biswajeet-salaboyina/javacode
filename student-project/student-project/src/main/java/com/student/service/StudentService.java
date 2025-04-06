@@ -5,6 +5,7 @@ import java.util.List;
 import com.student.dto.StudentFetch;
 import com.student.dto.StudentRequestdto;
 import com.student.dto.StudentResponsedto;
+import com.student.dto.Studentfetchdto;
 import com.student.entity.Student;
 
 public interface StudentService {
@@ -16,6 +17,10 @@ public interface StudentService {
 	
 
 	Student fetchBygetId(Integer id);
+
+	
+
+	Studentfetchdto fetchBygetIddto(Integer id);
 
 	
 	
