@@ -18,9 +18,13 @@ public interface StudentService {
 
 	Student fetchBygetId(Integer id);
 
-	
+	 
 
 	Studentfetchdto fetchBygetIddto(Integer id);
+
+	Studentfetchdto fetchBygetIdandNamedto(Integer id, String name);
+
+    Student  fetchId(Integer id);
 
 	
 	

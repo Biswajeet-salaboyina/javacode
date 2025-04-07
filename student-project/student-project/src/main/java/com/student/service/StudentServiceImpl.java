@@ -121,20 +121,41 @@ public class StudentServiceImpl implements StudentService {
         
         return dto;
 	}
+	
+	@Override
+	public Studentfetchdto fetchBygetIdandNamedto(Integer id, String name) {
+	    Optional<Student> response = studentRepository.findByIdAndName(id, name);
 
-//	@Override
-//	public Studentfetchdto fetchBygetIddto(Integer id) {
-//		Optional<Student>response= studentRepository.findById(id);
-//		 if(!response.isPresent())
-//		 {
-//			 throw new RuntimeException("Data not found");
-//		 }
-//		 Student student = response.get();
-//		    // Convert Entity → DTO
-//		 Studentfetchdto dto = new Studentfetchdto();
-//		    dto.setName(student.getName());
-//		    
-//		    return dto;
-//	}
+	    if (!response.isPresent()) {
+	        throw new RuntimeException("Data not found");
+	    }
+
+	    Student student = response.get();
+
+	    Studentfetchdto dto = new Studentfetchdto();
+	    dto.setName(student.getName());
+	    dto.setAge(student.getAge());
+	    dto.setMobilenumber(student.getMobilenumber());
+	    dto.setId(student.getId());
+	    dto.setGender(student.getGender());
+	    dto.setStatus(student.getStatus());
+	    dto.setStuId(student.getStuId());
+
+	    return dto;
+	}
+
+	@Override
+	public Student fetchId(Integer id) {
+		// TODO Auto-generated method stub
+		 Optional<Student>response= studentRepository.findById(id);
+		 if(!response.isPresent())
+		 {
+			 throw new RuntimeException("Data not found");
+		 }
+		return response.get();
+		
+	}
+
+
 
 }

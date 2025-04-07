@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -53,5 +54,22 @@ public class StudentController {
 		Studentfetchdto response = studentService.fetchBygetIddto(id);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
+	
+	@GetMapping("/fetch-all-dto/{id}/{name}")
+	public ResponseEntity<Studentfetchdto> fetchBygetIdandNamedto(@PathVariable("id") Integer id, @PathVariable("name") String name)
+	{
+		Studentfetchdto response = studentService.fetchBygetIdandNamedto(id,name);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+	
+	@GetMapping("/fetch-all-dto")
+	// By using requestparam 
+	public ResponseEntity<Student> fetchId(@RequestParam (value = "id") Integer id)
+	{
+		Student response = studentService.fetchId(id);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+	
+	
 	
 }
