@@ -26,6 +26,10 @@ public interface StudentService {
 
     Student  fetchId(Integer id);
 
+	List<StudentFetch> fetchAllstudentsByName(String Name);
+
+	StudentResponsedto deleteId(Integer id);
+
 	
 	
 

@@ -16,6 +16,8 @@ import com.student.dto.Studentfetchdto;
 import com.student.entity.Student;
 import com.student.repository.StudentRepository;
 
+import io.micrometer.common.util.StringUtils;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -154,6 +156,71 @@ public class StudentServiceImpl implements StudentService {
 		 }
 		return response.get();
 		
+	}
+
+	@Override
+	public List<StudentFetch> fetchAllstudentsByName(String Name)
+{
+		
+		List<StudentFetch> response = new ArrayList<>();
+		// TODO Auto-generated method stub
+		List<Student>results = null;
+		if(StringUtils.isBlank(Name))
+		{
+			results = studentRepository.findAll();
+			if( results == null || results.isEmpty())
+			{
+				return new ArrayList<>();
+			}
+			response = mapEntity(results,response);
+			return response;
+			
+		}
+		
+		results = studentRepository.findByName(Name);
+		if( results == null || results.isEmpty())
+		{
+			return new ArrayList<>();
+		}
+		
+//	List<StudentFetch> response1 = 	mapEntity(results,response);
+		response = mapEntity(results,response);
+		return response;
+		
+		
+		
+		
+	}
+
+	private List<StudentFetch> mapEntity(List<Student> student, List<StudentFetch> response) {
+		// TODO Auto-generated method stub
+		
+		for(Student stu:student)
+		{
+			StudentFetch stuResponse = new StudentFetch();
+			stuResponse.setId(stu.getId());
+			stuResponse.setName(stu.getName());
+			stuResponse.setStuId(stu.getStuId());
+			stuResponse.setAge(stu.getAge());
+			stuResponse.setGender(stu.getGender());
+			stuResponse.setMobilenumber(stu.getMobilenumber());
+			stuResponse.setStatus(stu.getStatus());
+			response.add(stuResponse);
+		}
+		return response;
+	}
+
+	@Override
+	public StudentResponsedto deleteId(Integer id) {
+		// TODO Auto-generated method stub
+		Student response = fetchBygetId(id);
+		studentRepository.delete(response);
+//		studentRepository.deleteById(id);
+		StudentResponsedto responsedto = new StudentResponsedto();
+		responsedto.setStudentid(String.valueOf(id));
+		responsedto.setMessage("Deleted successfully");
+		
+		return responsedto;
 	}
 
 
