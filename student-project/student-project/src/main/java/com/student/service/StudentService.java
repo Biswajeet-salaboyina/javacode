@@ -30,6 +30,8 @@ public interface StudentService {
 
 	StudentResponsedto deleteId(Integer id);
 
+	StudentResponsedto Updatestudent(StudentRequestdto studentRequest, Integer id);
+
 	
 	
 

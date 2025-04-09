@@ -223,6 +223,44 @@ public class StudentServiceImpl implements StudentService {
 		return responsedto;
 	}
 
+	@Override
+	public StudentResponsedto Updatestudent(StudentRequestdto studentRequest, Integer id) {
+		// TODO Auto-generated method stub
+		Student response = fetchBygetId(id);
+		if(studentRequest.getAge() != null )
+		{
+			response.setAge(studentRequest.getAge());
+		}
+		if(studentRequest.getGender() != null)
+		{
+			response.setGender(studentRequest.getGender());
+		}
+		if(StringUtils.isNotBlank(studentRequest.getName()))
+		{
+			response.setName(studentRequest.getName());
+		}
+		if(StringUtils.isNotBlank(studentRequest.getMobilenumber()))
+		{
+			response.setMobilenumber(studentRequest.getMobilenumber());
+		}
+		
+		Student student = studentRepository.save(response);
+		
+		StudentResponsedto responsedto = new StudentResponsedto();
+		if(student == null)
+		{
+			responsedto.setStudentid(String.valueOf(id));
+			responsedto.setMessage("Failed to update details");
+			return responsedto;
+		}
+		
+		responsedto.setStudentid(String.valueOf(student.getId()));
+		responsedto.setMessage("Student details updated ");
+		
+		
+		return responsedto;
+	}
+
 
 
 }
