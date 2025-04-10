@@ -3,6 +3,7 @@ package com.student.service;
 import java.util.List;
 
 import com.student.dto.StudentFetch;
+import com.student.dto.StudentPage;
 import com.student.dto.StudentRequestdto;
 import com.student.dto.StudentResponsedto;
 import com.student.dto.Studentfetchdto;
@@ -31,6 +32,10 @@ public interface StudentService {
 	StudentResponsedto deleteId(Integer id);
 
 	StudentResponsedto Updatestudent(StudentRequestdto studentRequest, Integer id);
+
+	List<StudentPage> getStudents(Integer pagenumber, Integer pagesize);
+
+//	StudentResponsedto UpdatestudentByIdandStatus(StudentRequestdto studentRequest, Integer id);
 
 	
 	

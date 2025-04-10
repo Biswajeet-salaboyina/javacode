@@ -1,32 +1,30 @@
 package com.student.dto;
 
-import com.student.entity.Gender;
+public class StudentPage {
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-
-public class StudentFetch {
 	private Integer Id;
 	private String name;
 	private String mobilenumber;
 	private Integer age;
 	private String stuId;
-				
-	public StudentFetch() {
+	private Long totalElements;
+	private Integer pagecount;
+	public Integer getId() {
+		return Id;
 	}
-	public StudentFetch(Integer id, String name, String mobilenumber, Integer age, String stuId, Gender gender,
-			String status) {
+	public StudentPage() {
+
+	}
+	public StudentPage(Integer id, String name, String mobilenumber, Integer age, String stuId, Long totalElements,
+			Integer pagecount) {
+		
 		Id = id;
 		this.name = name;
 		this.mobilenumber = mobilenumber;
 		this.age = age;
 		this.stuId = stuId;
-		this.gender = gender;
-		this.status = status;
-	}
-	public Integer getId() {
-		return Id;
+		this.totalElements = totalElements;
+		this.pagecount = pagecount;
 	}
 	public void setId(Integer id) {
 		Id = id;
@@ -55,19 +53,16 @@ public class StudentFetch {
 	public void setStuId(String stuId) {
 		this.stuId = stuId;
 	}
-	public Gender getGender() {
-		return gender;
+	public Long getTotalElements() {
+		return totalElements;
 	}
-	public void setGender(Gender gender) {
-		this.gender = gender;
+	public void setTotalElements(Long totalElements) {
+		this.totalElements = totalElements;
 	}
-	public String getStatus() {
-		return status;
+	public Integer getPagecount() {
+		return pagecount;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPagecount(Integer pagecount) {
+		this.pagecount = pagecount;
 	}
-	private Gender gender;
-	private String status;
-
 }

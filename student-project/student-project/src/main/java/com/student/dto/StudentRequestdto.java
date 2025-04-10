@@ -18,6 +18,7 @@ public class StudentRequestdto {
 
 	private String mobilenumber;
 	private Integer age;
+	private String status;
 	
 	private Gender gender;
 
@@ -75,6 +76,18 @@ public class StudentRequestdto {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

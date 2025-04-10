@@ -2,6 +2,7 @@ package com.student.controller;
 
 //import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,13 @@ import java.util.List;
 
 import com.student.dto.StudentRequestdto;
 import com.student.dto.StudentFetch;
+import com.student.dto.StudentPage;
 import com.student.dto.StudentResponsedto;
 import com.student.dto.Studentfetchdto;
 import com.student.entity.Student;
 import com.student.service.StudentService;
 
+@Qualifier(value="service2")
 @RequestMapping("/student")
 @RestController
 public class StudentController {
@@ -92,6 +95,19 @@ public class StudentController {
 		StudentResponsedto response = studentService.Updatestudent(studentRequest, id);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
+	
+	@GetMapping("/fetch-all/pagen")
+	public ResponseEntity<List<StudentPage>> getStudents(@RequestParam("pagenumber") Integer pagenumber, @RequestParam("pagesize") Integer pagesize)
+	{
+		List<StudentPage> response = studentService.getStudents(pagenumber,pagesize);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+//	@PutMapping("/update/status/{id}") 
+//	public ResponseEntity<StudentResponsedto>UpdatestudentByIdandStatus(@RequestBody StudentRequestdto studentRequest, @PathVariable("id") Integer id)
+//	{
+//		StudentResponsedto response = studentService.UpdatestudentByIdandStatus(studentRequest, id);
+//		return ResponseEntity.status(HttpStatus.OK).body(response);
+//	}
 	
 	
 	
