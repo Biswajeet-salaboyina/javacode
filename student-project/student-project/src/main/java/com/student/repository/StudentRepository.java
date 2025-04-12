@@ -9,7 +9,12 @@ import org.springframework.stereotype.Repository;
 
 import com.student.entity.Student;
 
+import jakarta.transaction.Transactional;
+
 @Repository
+@Transactional
+
+
 public interface StudentRepository extends JpaRepository<Student, Integer>  {
 
 
@@ -32,6 +37,11 @@ public interface StudentRepository extends JpaRepository<Student, Integer>  {
 
 	@Query(value="Select * from Student_table where id=:id and name= :name", nativeQuery = true)
 	Optional<Student> getByIdAndName(Integer id, String name);
+
+//	@Query(value="Delete  from Student_table where id=:id ",nativeQuery = true)
+//	void deletedata(Student response);
+	
+	
 
 //	@Query(value="Update Student_table set age=:age where id=:id",nativeQuery = true)
 //	Student Updatestu(Student response);
