@@ -1,11 +1,6 @@
-package com.student.service;
+package com.student.service.impl;
 
 import java.util.ArrayList;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -13,8 +8,6 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.student.dto.StudentFetch;
@@ -25,12 +18,13 @@ import com.student.dto.Studentfetchdto;
 import com.student.entity.Student;
 import com.student.exception.StudentDataException;
 import com.student.repository.StudentRepository;
+import com.student.service.StudentService;
 
 import io.micrometer.common.util.StringUtils;
 
-@Primary
-@Service (value = "service2")
-public class StudentServiceImpl2 implements StudentService {
+
+@Service (value = "service1")
+public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	StudentRepository studentRepository;
@@ -74,7 +68,7 @@ public class StudentServiceImpl2 implements StudentService {
 	@Override
 	public List<StudentFetch> fetchAllstudents() {
 		// TODO Auto-generated method stub
-		List<Student>results = studentRepository.getAll();
+		List<Student>results = studentRepository.findAll();
 		if( results == null || results.isEmpty())
 		{
 			return new ArrayList<>();
@@ -105,7 +99,7 @@ public class StudentServiceImpl2 implements StudentService {
 		// TODO Auto-generated method stub
 //		studentRepository.findByStuid(id);
 //		studentRepository.findByName(id);
-		 Optional<Student>response= studentRepository.getId(id);
+		 Optional<Student>response= studentRepository.findById(id);
 		 if(!response.isPresent())
 		 {
 			 throw new StudentDataException("Data not found");
@@ -137,7 +131,7 @@ public class StudentServiceImpl2 implements StudentService {
 	
 	@Override
 	public Studentfetchdto fetchBygetIdandNamedto(Integer id, String name) {
-	    Optional<Student> response = studentRepository.getByIdAndName(id, name);
+	    Optional<Student> response = studentRepository.findByIdAndName(id, name);
 
 	    if (!response.isPresent()) {
 	        throw new StudentDataException("Data not found");
@@ -188,7 +182,7 @@ public class StudentServiceImpl2 implements StudentService {
 			
 		}
 		
-		results = studentRepository.getByName(Name);
+		results = studentRepository.findByName(Name);
 		if( results == null || results.isEmpty())
 		{
 			return new ArrayList<>();
@@ -275,35 +269,8 @@ public class StudentServiceImpl2 implements StudentService {
 	@Override
 	public List<StudentPage> getStudents(Integer pagenumber, Integer pagesize) {
 		// TODO Auto-generated method stub
-		Pageable page = PageRequest.of(pagenumber, pagesize);
-		Page<Student>results = studentRepository.findAll(page);
-		List<Student> stud = results.getContent();
-	long 	totalElements = results.getTotalElements();
-	int 	pagecount = results.getTotalPages();
-		if( results == null || results.isEmpty())
-		{
-			return new ArrayList<>();
-		}
-		List<StudentPage> response =  new ArrayList<>();
-		
-		for(Student stu:stud)
-		{
-			StudentPage stuResponse = new StudentPage();
-			stuResponse.setId(stu.getId());
-			stuResponse.setName(stu.getName());
-			stuResponse.setStuId(stu.getStuId());
-			stuResponse.setAge(stu.getAge());
-//			stuResponse.setGender(stu.getGender());
-			stuResponse.setMobilenumber(stu.getMobilenumber());
-//			stuResponse.setStatus(stu.getStatus());
-			stuResponse.setTotalElements(totalElements);
-			stuResponse.setPagecount(pagecount);
-			response.add(stuResponse);
-		}
-		return response;
+		return null;
 	}
-	
-	
 
 	
 
@@ -334,7 +301,6 @@ public class StudentServiceImpl2 implements StudentService {
 ////			response.setStatus(studentRequest.getStatus());
 ////		}
 //		
-	
 //		Student student = studentRepository.save(response);
 //		
 //		StudentResponsedto responsedto = new StudentResponsedto();

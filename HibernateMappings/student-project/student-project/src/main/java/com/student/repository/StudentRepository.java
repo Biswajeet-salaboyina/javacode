@@ -51,8 +51,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer>  {
 
 //	Optional<Student> fetchBygetIdandStatus(Integer id, String status);
 
-//	Student fetchBygetId(Integer studentid);
-
 	
 
 }

@@ -334,7 +334,6 @@ public class StudentServiceImpl2 implements StudentService {
 ////			response.setStatus(studentRequest.getStatus());
 ////		}
 //		
-	
 //		Student student = studentRepository.save(response);
 //		
 //		StudentResponsedto responsedto = new StudentResponsedto();

@@ -25,7 +25,7 @@ import com.student.dto.Studentfetchdto;
 import com.student.entity.Student;
 import com.student.service.StudentService;
 
-@Qualifier(value="service1")
+@Qualifier(value="service2")
 @RequestMapping("/student")
 @RestController
 public class StudentController {
