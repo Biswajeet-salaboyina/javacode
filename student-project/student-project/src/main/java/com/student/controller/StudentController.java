@@ -32,10 +32,11 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
-	@PostMapping("/register")
-	public ResponseEntity<StudentResponsedto>registerstudent(@RequestBody StudentRequestdto studentRequest)
+	@PostMapping("/register/{collageId}")
+	public ResponseEntity<StudentResponsedto>registerstudent(@RequestBody StudentRequestdto studentRequest,@PathVariable (value = "collageId") Integer collageId)
 	{
-		StudentResponsedto response = studentService.registerstudent(studentRequest);
+		StudentResponsedto response = studentService.registerstudent(studentRequest,collageId);
+		System.out.println(">>> Register student method called");
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 	
@@ -108,6 +109,12 @@ public class StudentController {
 //		StudentResponsedto response = studentService.UpdatestudentByIdandStatus(studentRequest, id);
 //		return ResponseEntity.status(HttpStatus.OK).body(response);
 //	}
+	@GetMapping("/fetch-all/{id}/{clgId}")
+	public ResponseEntity<List<StudentFetch>> fetchStudents(@PathVariable("id") Integer id, @PathVariable("clgId") Integer clgId)
+	{
+		List<StudentFetch> result = studentService.fetchStudents(id,clgId);
+		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
 	
 	
 	

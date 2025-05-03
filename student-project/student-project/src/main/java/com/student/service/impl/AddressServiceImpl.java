@@ -109,5 +109,11 @@ return res1;
 		return res;
 	}
 	
+	//collage @p clg id, clg name, clg code unique ,
+	// stud clg id map new column in student table 
+	// collage controller fetching by create , id, all,
+	//clg record -> studnt save 
+	// clg id fetch list of student.
+	
 
 }

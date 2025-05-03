@@ -11,7 +11,7 @@ import com.student.entity.Student;
 
 public interface StudentService {
 
-	StudentResponsedto registerstudent(StudentRequestdto studentRequest);
+	StudentResponsedto registerstudent(StudentRequestdto studentRequest, Integer collageId);
 
 	List<StudentFetch> fetchAllstudents();
 
@@ -34,6 +34,9 @@ public interface StudentService {
 	StudentResponsedto Updatestudent(StudentRequestdto studentRequest, Integer id);
 
 	List<StudentPage> getStudents(Integer pagenumber, Integer pagesize);
+
+
+	List<StudentFetch> fetchStudents(Integer id, Integer clgId);
 
 //	StudentResponsedto UpdatestudentByIdandStatus(StudentRequestdto studentRequest, Integer id);
 

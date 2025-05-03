@@ -12,6 +12,7 @@ public class StudentFetch {
 	private String mobilenumber;
 	private Integer age;
 	private String stuId;
+	private Integer clgId;
 				
 	public StudentFetch() {
 	}
@@ -66,6 +67,12 @@ public class StudentFetch {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public Integer getClgId() {
+		return clgId;
+	}
+	public void setClgId(Integer clgId) {
+		this.clgId = clgId;
 	}
 	private Gender gender;
 	private String status;

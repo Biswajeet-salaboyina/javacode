@@ -15,9 +15,11 @@ import com.student.dto.StudentPage;
 import com.student.dto.StudentRequestdto;
 import com.student.dto.StudentResponsedto;
 import com.student.dto.Studentfetchdto;
+import com.student.entity.Collage;
 import com.student.entity.Student;
 import com.student.exception.StudentDataException;
 import com.student.repository.StudentRepository;
+import com.student.service.CollageService;
 import com.student.service.StudentService;
 
 import io.micrometer.common.util.StringUtils;
@@ -28,11 +30,22 @@ public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	StudentRepository studentRepository;
+	
+	@Autowired
+	CollageService collageService;
+
+ // clid id delete student status deactive 
 	@Override
-	public StudentResponsedto registerstudent(StudentRequestdto studentRequest) {
+	public StudentResponsedto registerstudent(StudentRequestdto studentRequest, Integer collageId) {
 		// TODO Auto-generated method stub
+		System.out.println(">>> Before fetching collage");
 		
+		Collage collage = collageService.getclgid(collageId);
+		System.out.println("Fetched Collage: " + (collage != null ? collage.getClgId() : "null"));
+
+
 		Student student = new Student();
+		
 		student.setName(studentRequest.getName());
 		student.setAge(studentRequest.getAge());
 		student.setMobilenumber(studentRequest.getMobilenumber());
@@ -41,6 +54,10 @@ public class StudentServiceImpl implements StudentService {
 		student.setStuId(StudentId);
 		student.setGender(studentRequest.getGender());
 		student.setStatus("Active");
+		System.out.println("Collage ID: " + collage.getClgId());
+
+		student.setClgId(collage.getClgId());
+		System.out.println(student);
 		
 		Student response = studentRepository.save(student);
 		StudentResponsedto responsedto = new StudentResponsedto();
@@ -68,6 +85,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<StudentFetch> fetchAllstudents() {
 		// TODO Auto-generated method stub
+//		Collage res = collageService.getclgid(clgid);
 		List<Student>results = studentRepository.findAll();
 		if( results == null || results.isEmpty())
 		{
@@ -84,6 +102,7 @@ public class StudentServiceImpl implements StudentService {
 			stuResponse.setGender(stu.getGender());
 			stuResponse.setMobilenumber(stu.getMobilenumber());
 			stuResponse.setStatus(stu.getStatus());
+//			stuResponse.setClgId(res.getClgId());
 			response.add(stuResponse);
 		}
 			
@@ -270,6 +289,42 @@ public class StudentServiceImpl implements StudentService {
 	public List<StudentPage> getStudents(Integer pagenumber, Integer pagesize) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<StudentFetch> fetchStudents(Integer id, Integer clgId) {
+		// TODO Auto-generated method stub
+		 Collage clgresponse = collageService.getclgid(clgId);
+
+		 List<Student> results = studentRepository.findAll();
+		 if( results == null || results.isEmpty())
+			{
+				return new ArrayList<>();
+			}
+		 List<StudentFetch> response =  new ArrayList<>();
+			
+		 for (Student stu : results) {
+		        stu.setClgId(clgresponse.getClgId());
+		        studentRepository.save(stu);  // save back to DB
+
+		        
+		        StudentFetch stuResponse = new StudentFetch();
+		        stuResponse.setId(stu.getId());
+		        stuResponse.setName(stu.getName());
+		        stuResponse.setStuId(stu.getStuId());
+		        stuResponse.setAge(stu.getAge());
+		        stuResponse.setGender(stu.getGender());
+		        stuResponse.setMobilenumber(stu.getMobilenumber());
+		        stuResponse.setStatus(stu.getStatus());
+		        stuResponse.setClgId(stu.getClgId());
+
+		        response.add(stuResponse);
+		 }
+			
+			
+			
+
+		return response;
 	}
 
 	

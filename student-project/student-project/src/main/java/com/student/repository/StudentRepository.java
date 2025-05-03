@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.student.dto.StudentFetch;
 import com.student.entity.Student;
 
 import jakarta.transaction.Transactional;
@@ -23,6 +24,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer>  {
 
 	List<Student> findByName(String name);
 
+	
 //	
 //	@Query("Select e from Student e where e.name=:name")
 	
@@ -37,6 +39,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer>  {
 
 	@Query(value="Select * from Student_table where id=:id and name= :name", nativeQuery = true)
 	Optional<Student> getByIdAndName(Integer id, String name);
+
 
 //	@Query(value="Delete  from Student_table where id=:id ",nativeQuery = true)
 //	void deletedata(Student response);

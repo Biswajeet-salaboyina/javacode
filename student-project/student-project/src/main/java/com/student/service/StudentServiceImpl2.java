@@ -35,7 +35,7 @@ public class StudentServiceImpl2 implements StudentService {
 	@Autowired
 	StudentRepository studentRepository;
 	@Override
-	public StudentResponsedto registerstudent(StudentRequestdto studentRequest) {
+	public StudentResponsedto registerstudent(StudentRequestdto studentRequest, Integer collageId) {
 		// TODO Auto-generated method stub
 		
 		Student student = new Student();
@@ -301,6 +301,12 @@ public class StudentServiceImpl2 implements StudentService {
 			response.add(stuResponse);
 		}
 		return response;
+	}
+
+	@Override
+	public List<StudentFetch> fetchStudents(Integer id, Integer clgId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

@@ -21,6 +21,7 @@ public class StudentRequestdto {
 	private String status;
 	
 	private Gender gender;
+	private Integer clgId;
 
 
 
@@ -88,6 +89,18 @@ public class StudentRequestdto {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+
+
+	public Integer getClgId() {
+		return clgId;
+	}
+
+
+
+	public void setClgId(Integer clgId) {
+		this.clgId = clgId;
 	}
 	
 }
